@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario en JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f4f4f4;
+    }
+    .form-container {
+      background: #9bd11d;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .opciones {
+      margin-top: 8px;
+    }
+    .opciones label {
+      font-weight: normal;
+      display: block;
+      margin: 4px 0;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px;
+      background: #4CAF50;
+      color: #0c0c0c;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>¡Formulario de Preguntas!</h2>
+    <form id="formulario">
+      <label for="nombre">¿Cuál es tu nombre?</label>
+      <input type="text" id="nombre" name="nombre" required>
+       
+      <label for="ciudad">¿Dónde vives actualmente?</label>
+      <input type="text" id="ciudad" name="ciudad" required>
+      
+      <label for="edad">¿Cuántos años tienes?</label>
+      <input type="number" id="edad" name="edad" required>
+
+      <label for="lenguaje">¿Qué lenguaje de programación estás estudiando?</label>
+      <input type="text" id="lenguaje" name="lenguaje" required>
+
+      <label>¿Dónde te enteraste de este formulario?</label>
+      <div class="opciones">
+       
+        <label><input type="radio" name="origen" value="redes" required> Redes Sociales</label>
+         <label><input type="radio" name="origen" value="Oracle-Alura" required> Oracle-Alura</label>
+        <label><input type="radio" name="origen" value="amigos"> Un amigo</label>
+        <label><input type="radio" name="origen" value="buscador"> Buscador (Google, Bing...)</label>
+        <label><input type="radio" name="origen" value="otro"> Otro</label>
+      </div>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script>
+    const formulario = document.getElementById("formulario");
+
+    formulario.addEventListener("submit", function(event) {
+      event.preventDefault(); // evita recargar la página
+
+      // Obtener los valores
+      let nombre = document.getElementById("nombre").value;
+      let ciudad = document.getElementById("ciudad").value;
+      let edad = document.getElementById("edad").value;
+      let lenguaje = document.getElementById("lenguaje").value;
+
+      // Obtener valor del radio seleccionado
+      let origen = document.querySelector('input[name="origen"]:checked').value;
+
+      // Mostrar en consola como JSON
+      let respuestas = {
+        nombre: nombre,
+        ciudad: ciudad,
+        edad: edad,
+        lenguaje: lenguaje,
+        origen: origen
+      };
+
+      console.log("---- Respuestas del formulario ----");
+      console.log(respuestas);
+
+      // Mensaje en pantalla
+      alert(`Gracias por completar este formulario,  ${nombre}. Ciudad: ${ciudad}, Edad: ${edad}, Estás estudiando: ${lenguaje}, Te enteraste por: ${origen}`);
+      
+      location.reload();
+    });
+  </script>
+</body>
+</html>
